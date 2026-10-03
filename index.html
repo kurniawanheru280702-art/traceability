@@ -3,55 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cetak Label Traceability</title>
+    <title>CETAK TRACEABILITY</title>
     <link href="bootstrap.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="logoo.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f7f9; 
+        }
+        .glass-header {
+            background-color: rgba(2, 18, 56, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #1e293b;
+        }
+        .modern-card {
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            background: #ffffff;
+            overflow: hidden;
+        }
+        .form-control, .form-select {
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            border: 1px solid #e2e8f0;
+            background-color: #f8fafc;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: #06b6d4;
+            box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.15);
+            background-color: #ffffff;
+        }
+        .form-label {
+            color: #334155;
+            font-size: 0.9rem;
+            margin-bottom: 0.4rem;
+        }
+        .btn-gradient {
+            background: linear-gradient(135deg, #06b6d4 0%, #2563eb 100%);
+            border: none;
+            border-radius: 12px;
+            padding: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+            color: white;
+        }
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            color: #06b6d4;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+    </style>
 </head>
-<body class="bg-light">
+<body>
 
-<div class="container mt-5">
+<header class="d-flex align-items-center justify-content-between px-4 px-md-5 sticky-top glass-header" style="height: 80px; z-index: 1030;">       
+    <nav class="d-flex align-items-center">
+        <a href="index.html" class="text-white text-decoration-none m-0" style="font-size: 2rem; font-weight: 800; letter-spacing: -1px;">
+            PPIC<span style="color: #06b6d4;">SOMIC</span>
+        </a>
+    </nav>
+</header>
+
+<div class="container mt-5 mb-5">
     <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card shadow-sm mb-4">
-                <div class="card-header bg-primary text-white">
-                    <h5 class="mb-0">Form Cetak Label Traceability</h5>
-                </div>
-                <div class="card-body">
+        <div class="col-md-7 col-lg-6">
+            <div class="card modern-card">
+                <div class="card-body p-4 p-md-5">
+                    <div class="text-center mb-4 pb-2 border-bottom">
+                        <div class="icon-circle mb-3">
+                            <img src="logoo.ico" alt="Logo SOMIC" style="width: 60px; height: 60px; object-fit: contain;">
+                        </div>
+                        <h4 class="fw-bold text-dark mb-1">Cetak Traceability</h4>
+                        <p class="text-muted small">Lengkapi data form untuk membuat label</p>
+                    </div>
+
                     <form id="formCetak">
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Pilih Traceability</label>
-                            <select class="form-select" id="model_type" required>
-                                <option value="">-- Pilih Label --</option>
-                                <option value="Template 1">Traceability D03B</option>
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">Pilih Template Label</label>
+                            <select class="form-select fw-medium text-dark" id="model_type" required>
+                                <option value="">-- Pilih Model --</option>
+                                <option value="Template 1">Traceability OBJ D03B</option>
                                 <option value="Template 2">Traceability Soket Y4L</option>
                                 <option value="Template 3">Traceability Soket YLO</option>
                                 <option value="Template 4">Traceability Soket YR9</option>
                             </select>
                         </div>
-                        <div class="mb-3">
+                        
+                        <div class="mb-4">
                             <label class="form-label fw-bold">Nama Operator</label>
-                            <input type="text" class="form-control" id="operator_name" placeholder="Ketik nama Anda..." required>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0 text-muted"><i class="bi bi-person"></i></span>
+                                <input type="text" class="form-control border-start-0 ps-0" id="operator_name" placeholder="Ketik nama Anda..." required>
+                            </div>
                         </div>
+
                         <div id="kolom_khusus" style="display: none;">
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Tanggal Assembly</label>
-                            <input type="date" class="form-control" id="assembly_date">
+                            <div class="row">
+                                <div class="col-6 mb-4">
+                                    <label class="form-label fw-bold">Tgl Assembly</label>
+                                    <input type="date" class="form-control" id="assembly_date">
+                                </div>
+                                <div class="col-6 mb-4">
+                                    <label class="form-label fw-bold">Tgl Inspection</label>
+                                    <input type="date" class="form-control" id="inspection_date">
+                                </div>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Tanggal Inspection</label>
-                            <input type="date" class="form-control" id="inspection_date">
+
+                        <div class="row">
+                            <div class="col-8 mb-4">
+                                <label class="form-label fw-bold">Tanggal Packing</label>
+                                <input type="date" class="form-control" id="packing_date" required>
+                            </div>
+                            <div class="col-4 mb-4">
+                                <label class="form-label fw-bold text-primary">Jumlah</label>
+                                <input type="number" class="form-control border-primary text-center fw-bold" id="print_copies" value="1" min="1" required>
+                            </div>
                         </div>
-                        </div>
-                        <div class="mb-4">
-                            <label class="form-label fw-bold">Tanggal Packing</label>
-                            <input type="date" class="form-control" id="packing_date" required>
-                        </div>
-                        <div class="mb-4">
-                           <label class="form-label fw-bold text-danger">Jumlah Cetak</label>
-                           <input type="number" class="form-control border-danger" id="print_copies" value="1" min="1" required>
-                        </div>
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-primary btn-lg" id="btnSubmit">Generate Label</button>
+
+                        <div class="d-grid mt-2">
+                            <button type="submit" class="btn btn-primary btn-gradient text-white" id="btnSubmit">
+                                <i class="bi bi-magic me-2"></i>Generate Label
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -80,18 +167,33 @@
 <script src="bootstrap.bundle.min.js"></script>
 
 <script>
-
 document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("tahun").textContent = new Date().getFullYear();
     var savedName = localStorage.getItem("saved_operator_name");
     if (savedName) {
         document.getElementById("operator_name").value = savedName;
     }
+    var today = new Date();
+    var yyyy = today.getFullYear();
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); // Bulan mulai dari 0, makanya +1
+    var dd = String(today.getDate()).padStart(2, '0');
+    var packingFormatted = yyyy + '-' + mm + '-' + dd;
+    
+    document.getElementById("packing_date").value = packingFormatted;
+    var inspDate = new Date();
+    inspDate.setDate(today.getDate() - 3); 
+    var inspYyyy = inspDate.getFullYear();
+    var inspMm = String(inspDate.getMonth() + 1).padStart(2, '0');
+    var inspDd = String(inspDate.getDate()).padStart(2, '0');
+    var inspFormatted = inspYyyy + '-' + inspMm + '-' + inspDd;
+    
+    document.getElementById("inspection_date").value = inspFormatted;
 });
 
 function formatDate(dateString) {
-    if (!dateString) return '-';
+    if (!dateString) return '';
     var date = new Date(dateString);
-    var months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+    var months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
     
     var day = date.getDate().toString().padStart(2, '0');
     var month = months[date.getMonth()];
@@ -110,10 +212,7 @@ document.getElementById('formCetak').addEventListener('submit', function(e) {
     var assyDate = formatDate(document.getElementById('assembly_date').value);
     var inspDate = formatDate(document.getElementById('inspection_date').value);
     var packDate = formatDate(document.getElementById('packing_date').value);
-
-    // Simpan nama yang baru diketik ke memori HP/Browser (LocalStorage)
     localStorage.setItem("saved_operator_name", operatorName);
-
     var submitBtn = document.getElementById('btnSubmit');
     submitBtn.innerHTML = "Memproses...";
     submitBtn.disabled = true;
@@ -145,9 +244,9 @@ document.getElementById('formCetak').addEventListener('submit', function(e) {
         zpl += "^FO510,10^GB0,370,2^FS\n";
 
         zpl += "^FO100,15^A0N,22,22^FDTRACEBILITY LABEL^FS\n";
-        zpl += "^FO60,45^A0N,20,20^FD" + partName + "^FS\n";
-        zpl += "^FO110,75^A0N,20,20^FD" + partNo + "^FS\n";
-        zpl += "^FO415,18^A0N,18,18^FDBack No. SMI^FS\n";
+        zpl += "^FO10,45^A0N,20,20^FB400,1,0,C^FD" + partName + "^FS\n";
+        zpl += "^FO10,75^A0N,20,20^FB400,1,0,C^FD" + partNo + "^FS\n";
+        zpl += "^FO415,18^A0N,18,18^FDBack No.SMI^FS\n";
         zpl += "^FO430,60^A0N,30,30^FD" + backNo + "^FS\n";
         zpl += "^FO590,18^A0N,18,18^FDUnique No.^FS\n";
 
@@ -162,14 +261,14 @@ document.getElementById('formCetak').addEventListener('submit', function(e) {
         zpl += "^FO230,160^A0N,20,20^FD" + assyDate + "^FS\n";
         zpl += "^FO30,220^A0N,20,20^FD2^FS\n";
         zpl += "^FO80,220^A0N,20,20^FDINSPECTION^FS\n";
-        zpl += "^FO230,220^A0N,20,20^FD" + inspDate + "^FS\n";
+        zpl += "^FO230,220^A0N,25,25^FD" + inspDate + "^FS\n";
         zpl += "^FO30,280^A0N,20,20^FD3^FS\n";
         zpl += "^FO80,280^A0N,20,20^FDPACKING^FS\n";
-        zpl += "^FO230,280^A0N,20,20^FD" + packDate + "^FS\n";
-        zpl += "^FO530,280^A0N,22,22^FD" + operator + "^FS\n";
+        zpl += "^FO230,280^A0N,25,25^FD" + packDate + "^FS\n";
+        zpl += "^FO530,280^A0N,30,30^FB200,1,0,C^FD" + operator + "^FS\n";
         zpl += "^FO30,340^A0N,20,20^FD4^FS\n";
         zpl += "^FO80,340^A0N,20,20^FDPREPARATION^FS\n";
-        zpl += "^FO430,250^A0N,20,20^FD" + qty + "^FS\n";
+        zpl += "^FO430,250^A0N,25,25^FD" + qty + "^FS\n";
 
     } else if (modelType === "Template 2") {
         var partName1 = "SOCKET BALL";
@@ -177,12 +276,12 @@ document.getElementById('formCetak').addEventListener('submit', function(e) {
         var partNo = "45254-52S00";
         var model = "Model Y4L";
         var qty = "30 Pcs";
-        var customer1 = "PT. YOROZU";
-        var customer2 = "INDONESIA";
+        var customer2 = "PT. YOROZU INDONESIA";
+        // var customer2 = "INDONESIA";
         var operator = operatorName; 
 
         zpl += "^FO10,10^GB770,380,2^FS\n";
-        zpl += "^FO550,55^GB230,0,2^FS\n";
+        zpl += "^FO550,40^GB230,0,2^FS\n";
         zpl += "^FO10,100^GB770,0,2^FS\n";
         zpl += "^FO10,140^GB770,0,2^FS\n";
         zpl += "^FO10,230^GB770,0,2^FS\n";
@@ -190,12 +289,12 @@ document.getElementById('formCetak').addEventListener('submit', function(e) {
         zpl += "^FO200,10^GB0,380,2^FS\n";
         zpl += "^FO550,10^GB0,380,2^FS\n";
 
-        zpl += "^FO60,15^GFA,350,350,7,00000000000000000000000000000000000000070000000000000F8000000000001F8000000000003F8000000000007F000000000000FE000000000003FC000000000003F800000000000FF000000000000FE0000000FF803FC000000FFFE07F0000001FFFF8FF0000007FFFF8FE000000FFFFF078000001FFFFE030000003FFFFC000000007FFFF8000000007FFFF000000000FFFFE003000000FFFFC007000001FFFF800F800001FFFF001F800001FFFE003F800003FFFC007F800003FFF800FF800003FFF001FFC00003FFE003FFC00003FF8007FF800003FF001FFF800003FF001FFF800001FC007FFF800001F800FFFF800001F001FFFF800000E003FFFF000000C007FFFF000000000FFFFE000000001FFFFE000000003FFFFC000000007FFFF800000000FFFFF000000001FFFFE000000003FFFFC000000001FFFF00000000007FFC000000000007C000000000000000000000000000000000000^FS\n";         
-        zpl += "^FO60,70^A0N,18,18^FDSOMIC^FS\n";
+        zpl += "^FO85,15^GFA,350,350,7,00000000000000000000000000000000000000070000000000000F8000000000001F8000000000003F8000000000007F000000000000FE000000000003FC000000000003F800000000000FF000000000000FE0000000FF803FC000000FFFE07F0000001FFFF8FF0000007FFFF8FE000000FFFFF078000001FFFFE030000003FFFFC000000007FFFF8000000007FFFF000000000FFFFE003000000FFFFC007000001FFFF800F800001FFFF001F800001FFFE003F800003FFFC007F800003FFF800FF800003FFF001FFC00003FFE003FFC00003FF8007FF800003FF001FFF800003FF001FFF800001FC007FFF800001F800FFFF800001F001FFFF800000E003FFFF000000C007FFFF000000000FFFFE000000001FFFFE000000003FFFFC000000007FFFF800000000FFFFF000000001FFFFE000000003FFFFC000000001FFFF00000000007FFC000000000007C000000000000000000000000000000000000^FS\n";         
+        zpl += "^FO85,70^A0N,18,18^FDSOMIC^FS\n";
         zpl += "^FO230,45^A0N,28,28^FDPT. SOMIC INDONESIA^FS\n";
         zpl += "^FO600,20^A0N,22,22^FD" + model + "^FS\n";
-        zpl += "^FO570,60^A0N,20,20^FDDATE PACKING^FS\n";
-        zpl += "^FO580,80^A0N,18,18^FD" + packDate + "^FS\n";
+        zpl += "^FO600,45^A0N,19,19^FDDATE PACKING^FS\n";
+        zpl += "^FO580,70^A0N,30,30^FD" + packDate + "^FS\n";
 
         zpl += "^FO50,110^A0N,22,22^FDPart Name^FS\n";
         zpl += "^FO330,110^A0N,22,22^FDPart No.^FS\n";
@@ -203,17 +302,17 @@ document.getElementById('formCetak').addEventListener('submit', function(e) {
 
         zpl += "^FO25,160^A0N,25,25^FD" + partName1 + "^FS\n";
         zpl += "^FO60,190^A0N,25,25^FD" + partName2 + "^FS\n";
-        zpl += "^FO250,170^A0N,35,35^FD" + partNo + "^FS\n";
-        zpl += "^FO610,170^A0N,25,25^FD" + qty + "^FS\n";
+        zpl += "^FO270,170^A0N,35,35^FD" + partNo + "^FS\n";
+        zpl += "^FO610,170^A0N,35,35^FD" + qty + "^FS\n";
 
         zpl += "^FO45,240^A0N,22,22^FDJudgement^FS\n";
         zpl += "^FO330,240^A0N,22,22^FDCustomer^FS\n";
         zpl += "^FO610,240^A0N,22,22^FDChecked^FS\n";
 
-        zpl += "^FO75,300^A0N,40,40^FDOK^FS\n";
-        zpl += "^FO270,290^A0N,25,25^FD" + customer1 + "^FS\n";
-        zpl += "^FO285,325^A0N,25,25^FD" + customer2 + "^FS\n";
-        zpl += "^FO615,300^A0N,35,35^FD" + operator + "^FS\n";
+        zpl += "^FO75,320^A0N,40,40^FDOK^FS\n";
+        // zpl += "^FO270,290^A0N,25,25^FD" + customer1 + "^FS\n";
+        zpl += "^FO235,320^A0N,30,30^FD" + customer2 + "^FS\n";
+        zpl += "^FO600,320^A0N,40,40^FD" + operator + "^FS\n";
 
     } else if (modelType === "Template 3") {
         var partName1 = "SOCKET BALL";
@@ -222,23 +321,23 @@ document.getElementById('formCetak').addEventListener('submit', function(e) {
         var partNo2   = "(A-261-206-Z)";
         var backNo    = "B014";
         var qty       = "40 PCS";
-        var customer1 = "PT.NTC/";
-        var customer2 = "PT.MIYUKI";
+        // var customer1 = "PT.NTC/";
+        var customer2 = "PT. NTC / PT. MIYUKI";
         var operator  = operatorName; 
 
         zpl += "^FO10,10^GB770,380,2^FS\n";      
         zpl += "^FO10,90^GB770,0,2^FS\n";       
         zpl += "^FO10,130^GB770,0,2^FS\n";      
         zpl += "^FO10,240^GB770,0,2^FS\n";      
-        zpl += "^FO10,280^GB570,0,2^FS\n";      
+        zpl += "^FO10,280^GB770,0,2^FS\n";      
         zpl += "^FO160,10^GB0,80,2^FS\n";       
-        zpl += "^FO250,90^GB0,290,2^FS\n";      
-        zpl += "^FO580,10^GB0,370,2^FS\n";      
+        zpl += "^FO250,90^GB0,300,2^FS\n";      
+        zpl += "^FO580,10^GB0,380,2^FS\n";      
         zpl += "^FO60,15^GFA,350,350,7,00000000000000000000000000000000000000070000000000000F8000000000001F8000000000003F8000000000007F000000000000FE000000000003FC000000000003F800000000000FF000000000000FE0000000FF803FC000000FFFE07F0000001FFFF8FF0000007FFFF8FE000000FFFFF078000001FFFFE030000003FFFFC000000007FFFF8000000007FFFF000000000FFFFE003000000FFFFC007000001FFFF800F800001FFFF001F800001FFFE003F800003FFFC007F800003FFF800FF800003FFF001FFC00003FFE003FFC00003FF8007FF800003FF001FFF800003FF001FFF800001FC007FFF800001F800FFFF800001F001FFFF800000E003FFFF000000C007FFFF000000000FFFFE000000001FFFFE000000003FFFFC000000007FFFF800000000FFFFF000000001FFFFE000000003FFFFC000000001FFFF00000000007FFC000000000007C000000000000000000000000000000000000^FS\n";         
         zpl += "^FO60,70^A0N,18,18^FDSOMIC^FS\n";
         zpl += "^FO230,40^A0N,30,30^FDPT. SOMIC INDONESIA^FS\n";
         zpl += "^FO590,20^A0N,18,18^FDBack No.^FS\n";
-        zpl += "^FO620,40^A0N,40,40^FD" + backNo + "^FS\n";
+        zpl += "^FO650,40^A0N,40,40^FD" + backNo + "^FS\n";
         zpl += "^FO80,100^A0N,22,22^FDPart Name^FS\n";
         zpl += "^FO370,100^A0N,22,22^FDPart NO.^FS\n";
         zpl += "^FO590,105^A0N,20,20^FDQTY:^FS\n";
@@ -247,16 +346,17 @@ document.getElementById('formCetak').addEventListener('submit', function(e) {
         zpl += "^FO80,195^A0N,25,25^FD" + partName2 + "^FS\n";
         zpl += "^FO320,150^A0N,30,30^FD" + partNo1 + "^FS\n";
         zpl += "^FO310,195^A0N,28,28^FD" + partNo2 + "^FS\n";
-        zpl += "^FO590,160^A0N,20,20^FDDATE :^FS\n";
-        zpl += "^FO600,190^A0N,22,22^FD" + packDate + "^FS\n"; 
+        zpl += "^FO590,140^A0N,20,20^FDDATE :^FS\n";
+        zpl += "^FO600,180^A0N,30,30^FD" + packDate + "^FS\n"; 
         zpl += "^FO60,250^A0N,22,22^FDJudgement^FS\n";
         zpl += "^FO370,250^A0N,22,22^FDCustomer^FS\n";
-        zpl += "^FO590,250^A0N,20,20^FDChecked^FS\n";
+        zpl += "^FO650,250^A0N,20,20^FDChecked^FS\n";
         zpl += "^FO105,310^A0N,40,40^FDOK^FS\n";
-        zpl += "^FO360,300^A0N,25,25^FD" + customer1 + "^FS\n";
-        zpl += "^FO345,335^A0N,25,25^FD" + customer2 + "^FS\n";
-        zpl += "^FO630,300^A0N,40,40^FD" + operator + "^FS\n";
-    } else if (modelType === "Template 4") {
+        // zpl += "^FO360,300^A0N,25,25^FD" + customer1 + "^FS\n";
+        zpl += "^FO300,325^A0N,30,30^FD" + customer2 + "^FS\n";
+        zpl += "^FO630,325^A0N,40,40^FD" + operator + "^FS\n";
+    
+    }else if (modelType === "Template 4") {
         var partName1 = "SOCKET BALL";
         var partName2 = "JOINT";
         var partNo    = "A-261-158-Z";
@@ -267,31 +367,32 @@ document.getElementById('formCetak').addEventListener('submit', function(e) {
 
         zpl += "^FO10,10^GB770,380,2^FS\n";      
         zpl += "^FO160,10^GB0,80,2^FS\n";      
-        zpl += "^FO250,90^GB0,290,2^FS\n";     
-        zpl += "^FO580,10^GB0,370,2^FS\n";     
-        zpl += "^FO580,70^GB200,0,2^FS\n";      
+        zpl += "^FO250,90^GB0,300,2^FS\n";     
+        zpl += "^FO580,10^GB0,380,2^FS\n";     
+        zpl += "^FO580,60^GB200,0,2^FS\n";      
         zpl += "^FO10,90^GB570,0,2^FS\n";       
         zpl += "^FO10,130^GB770,0,2^FS\n";      
         zpl += "^FO10,240^GB770,0,2^FS\n";      
-        zpl += "^FO10,280^GB570,0,2^FS\n";      
+        zpl += "^FO10,280^GB770,0,2^FS\n";      
         zpl += "^FO60,15^GFA,350,350,7,00000000000000000000000000000000000000070000000000000F8000000000001F8000000000003F8000000000007F000000000000FE000000000003FC000000000003F800000000000FF000000000000FE0000000FF803FC000000FFFE07F0000001FFFF8FF0000007FFFF8FE000000FFFFF078000001FFFFE030000003FFFFC000000007FFFF8000000007FFFF000000000FFFFE003000000FFFFC007000001FFFF800F800001FFFF001F800001FFFE003F800003FFFC007F800003FFF800FF800003FFF001FFC00003FFE003FFC00003FF8007FF800003FF001FFF800003FF001FFF800001FC007FFF800001F800FFFF800001F001FFFF800000E003FFFF000000C007FFFF000000000FFFFE000000001FFFFE000000003FFFFC000000007FFFF800000000FFFFF000000001FFFFE000000003FFFFC000000001FFFF00000000007FFC000000000007C000000000000000000000000000000000000^FS\n";         
         zpl += "^FO60,70^A0N,18,18^FDSOMIC^FS\n";
-        zpl += "^FO280,40^A0N,30,30^FDPT. SOMIC INDONESIA^FS\n";
+        zpl += "^FO230,45^A0N,28,28^FDPT. SOMIC INDONESIA^FS\n";
         zpl += "^FO590,15^A0N,16,16^FDBack No.^FS\n";
-        zpl += "^FO650,20^A0N,40,40^FD" + backNo + "^FS\n";
-        zpl += "^FO590,80^A0N,16,16^FDDATE PACKING^FS\n";
-        zpl += "^FO600,100^A0N,22,22^FD" + packDate + "^FS\n";
+        zpl += "^FO660,20^A0N,40,40^FD" + backNo + "^FS\n";
+        zpl += "^FO610,70^A0N,20,20^FDDATE PACKING^FS\n";
+        zpl += "^FO610,100^A0N,25,25^FD" + packDate + "^FS\n";
         zpl += "^FO80,100^A0N,22,22^FDPart Name^FS\n";
         zpl += "^FO380,100^A0N,22,22^FDPart NO.^FS\n"; 
         zpl += "^FO40,160^A0N,25,25^FD" + partName1 + "^FS\n";
         zpl += "^FO80,195^A0N,25,25^FD" + partName2 + "^FS\n";
         zpl += "^FO310,170^A0N,35,35^FD" + partNo + "^FS\n";
-        zpl += "^FO595,175^A0N,26,26^FDQTY: " + qty + "^FS\n"; 
+        zpl += "^FO590,140^A0N,20,20^FDQTY:^FS\n";
+        zpl += "^FO630,170^A0N,35,35^FD" + qty + "^FS\n"; 
         zpl += "^FO60,250^A0N,22,22^FDJudgement^FS\n";
         zpl += "^FO370,250^A0N,22,22^FDCustomer^FS\n";
-        zpl += "^FO590,250^A0N,20,20^FDChecked^FS\n";
+        zpl += "^FO650,250^A0N,20,20^FDChecked^FS\n";
         zpl += "^FO105,310^A0N,40,40^FDOK^FS\n";
-        zpl += "^FO330,315^A0N,28,28^FD" + customer + "^FS\n";
+        zpl += "^FO325,315^A0N,30,30^FD" + customer + "^FS\n";
         zpl += "^FO630,310^A0N,40,40^FD" + operator + "^FS\n";
     }
 
@@ -324,7 +425,6 @@ document.getElementById('formCetak').addEventListener('submit', function(e) {
         submitBtn.disabled = false;
     });
 });
-// Fungsi untuk memunculkan/menyembunyikan form sesuai template
 document.getElementById('model_type').addEventListener('change', function() {
     var kolomKhusus = document.getElementById('kolom_khusus');
     
@@ -338,32 +438,49 @@ document.getElementById('model_type').addEventListener('change', function() {
 document.getElementById('btnCetakFisik').addEventListener('click', function() {
     var imgSrc = document.getElementById('labelImage').src;
     var printCopies = parseInt(document.getElementById('print_copies').value) || 1;
-    var printWindow = window.open('', '_blank', 'width=600,height=400');
     
-    var htmlContent = '<!DOCTYPE html><html><head><title>Print Label</title>';
+    if(!imgSrc || imgSrc === "") {
+        alert("Generate labelnya dulu ya Bang!");
+        return;
+    }
+
+    var printWindow = window.open('', '_blank');
+    
+    if (!printWindow) {
+    alert("Browser memblokir tab baru! Mohon izinkan/allow pop-up untuk mencetak label guys.");
+    return;
+}
+    
+    var htmlContent = '<!DOCTYPE html><html><head><title>Print Label Thermal</title>';
     htmlContent += '<style>';
-    htmlContent += '@media print { .label-page { page-break-after: always; } body { margin: 0; } }';
-    
-    // PERBAIKAN: Tag penutup dipecah stringnya biar ngga bocor
+    htmlContent += '@page { margin: 0; } ';
+    htmlContent += 'body { margin: 0; padding: 0; } ';
+    htmlContent += '.label-page { width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: flex-start; page-break-after: always; overflow: hidden; } ';
+    htmlContent += '.label-page:last-child { page-break-after: auto; } ';
+    htmlContent += '.label-page img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; } ';
     htmlContent += '<' + '/style><' + '/head><body>';
     
     for (var i = 0; i < printCopies; i++) {
-        htmlContent += '<div class="label-page" style="text-align:center;"><img src="' + imgSrc + '" style="width:100%; max-width:400px;"><' + '/div>';
+        htmlContent += '<div class="label-page"><img src="' + imgSrc + '"><' + '/div>';
     }
     
-    // PERBAIKAN: Tag penutup dipecah stringnya
     htmlContent += '<' + '/body><' + '/html>';
     
     printWindow.document.write(htmlContent);
     printWindow.document.close();
     printWindow.focus();
-    
     setTimeout(function() {
         printWindow.print();
         printWindow.close();
     }, 500);
 });
 </script>
-
+<footer class="text-center" style="padding: 3rem 1.5rem; font-size: 0.875rem; color: #64748b;">
+    <div class="mx-auto" style="max-width: 1024px; border-top: 1px solid #1e293b; padding-top: 2rem;">
+        <p class="mb-4 fw-semibold" style="color: #010f23;">
+            &copy; <span id="tahun"></span> PPIC SOMIC. All Rights Reserved.
+        </p>
+    </div>
+</footer>
 </body>
 </html>
