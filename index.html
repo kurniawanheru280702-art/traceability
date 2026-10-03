@@ -7,6 +7,8 @@
     <link href="bootstrap.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="logoo.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -173,9 +175,12 @@ document.addEventListener("DOMContentLoaded", function() {
     if (savedName) {
         document.getElementById("operator_name").value = savedName;
     }
+        document.getElementById('operator_name').addEventListener('input', function(e) {
+        this.value = this.value.toUpperCase();
+    });
     var today = new Date();
     var yyyy = today.getFullYear();
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); // Bulan mulai dari 0, makanya +1
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); 
     var dd = String(today.getDate()).padStart(2, '0');
     var packingFormatted = yyyy + '-' + mm + '-' + dd;
     
@@ -209,6 +214,40 @@ document.getElementById('formCetak').addEventListener('submit', function(e) {
 
     var modelType = document.getElementById('model_type').value;
     var operatorName = document.getElementById('operator_name').value;
+    var assyRaw = new Date(document.getElementById('assembly_date').value);
+    var inspRaw = new Date(document.getElementById('inspection_date').value);
+    var packRaw = new Date(document.getElementById('packing_date').value);
+    var printCopies = parseInt(document.getElementById('print_copies').value);
+    if (printCopies > 30) {
+        Swal.fire({
+            icon: 'error',
+            title: 'HEMAT!',
+            text: 'Jumlah cetak terlalu banyak! Maksimal 30 lembar sekali cetak.',
+            confirmButtonColor: '#0ea5e9' 
+        });
+        return; 
+    }
+
+    if (modelType === "Template 1") {
+        if (assyRaw > inspRaw) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'FOKUS!',
+                text: 'Tanggal Assembly tidak boleh melewati Tanggal Inspection.',
+                confirmButtonColor: '#0ea5e9'
+            });
+            return; 
+        }
+        if (inspRaw > packRaw) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'FOKUS!',
+                text: 'Tanggal Inspection tidak boleh melewati Tanggal Packing.',
+                confirmButtonColor: '#0ea5e9'
+            });
+            return; 
+        }
+    }
     var assyDate = formatDate(document.getElementById('assembly_date').value);
     var inspDate = formatDate(document.getElementById('inspection_date').value);
     var packDate = formatDate(document.getElementById('packing_date').value);
@@ -216,7 +255,6 @@ document.getElementById('formCetak').addEventListener('submit', function(e) {
     var submitBtn = document.getElementById('btnSubmit');
     submitBtn.innerHTML = "Memproses...";
     submitBtn.disabled = true;
-
     var zpl = "^XA\n";
 
     if (modelType === "Template 1") {
@@ -258,7 +296,7 @@ document.getElementById('formCetak').addEventListener('submit', function(e) {
 
         zpl += "^FO30,160^A0N,20,20^FD1^FS\n";
         zpl += "^FO80,160^A0N,20,20^FDASSEMBLY^FS\n";
-        zpl += "^FO230,160^A0N,20,20^FD" + assyDate + "^FS\n";
+        zpl += "^FO230,160^A0N,25,25^FD" + assyDate + "^FS\n";
         zpl += "^FO30,220^A0N,20,20^FD2^FS\n";
         zpl += "^FO80,220^A0N,20,20^FDINSPECTION^FS\n";
         zpl += "^FO230,220^A0N,25,25^FD" + inspDate + "^FS\n";
@@ -429,9 +467,9 @@ document.getElementById('model_type').addEventListener('change', function() {
     var kolomKhusus = document.getElementById('kolom_khusus');
     
     if (this.value === 'Template 1') {
-        kolomKhusus.style.display = 'block'; // Munculkan kalau Template 1
+        kolomKhusus.style.display = 'block'; 
     } else {
-        kolomKhusus.style.display = 'none';  // Sembunyikan kalau template lain
+        kolomKhusus.style.display = 'none';  
     }
 });
 
@@ -440,16 +478,26 @@ document.getElementById('btnCetakFisik').addEventListener('click', function() {
     var printCopies = parseInt(document.getElementById('print_copies').value) || 1;
     
     if(!imgSrc || imgSrc === "") {
-        alert("Generate labelnya dulu ya Bang!");
+        Swal.fire({
+            icon: 'info',
+            title: 'Label Belum Dibuat',
+            text: 'Generate labelnya dulu ya sebelum dicetak!',
+            confirmButtonColor: '#0ea5e9'
+        });
         return;
     }
 
     var printWindow = window.open('', '_blank');
     
     if (!printWindow) {
-    alert("Browser memblokir tab baru! Mohon izinkan/allow pop-up untuk mencetak label guys.");
-    return;
-}
+        Swal.fire({
+            icon: 'error',
+            title: 'Tab Baru Diblokir!',
+            text: 'Browser HP memblokir tab baru. Tolong izinkan (allow) pop-up di pengaturan browser.',
+            confirmButtonColor: '#0ea5e9'
+        });
+        return;
+    }
     
     var htmlContent = '<!DOCTYPE html><html><head><title>Print Label Thermal</title>';
     htmlContent += '<style>';
